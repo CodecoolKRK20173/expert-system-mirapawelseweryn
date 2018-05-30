@@ -4,11 +4,12 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 public class RuleParser extends XMLParser {
-    private RuleRepository ruleRepository = new RuleRepository();
+    private RuleRepository ruleRepository;
     private final int INDEX = 0;
     
     public RuleParser(String fileName){
         super.loadXMLDocument(fileName);
+        this.ruleRepository = new RuleRepository();
         createQuestion();
         
     }
@@ -45,7 +46,6 @@ public class RuleParser extends XMLParser {
                                 Element answerElement = (Element) answerNode;
 
                                 if (answerElement.getTagName().equals("SingleValue")) {
-                                        System.out.println(answerElement.getAttribute("value"));
                                         answer.addValue(new SingleValue(answerElement.getAttribute("value"), val));
                                         this.ruleRepository.addQuestion(new Question(id, question, answer));
                                     } else {
