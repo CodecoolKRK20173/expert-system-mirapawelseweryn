@@ -16,6 +16,7 @@ public class RuleParser extends XMLParser {
     public RuleRepository getRuleRepository() {
         return this.ruleRepository;
     }
+
     public void createQuestion() {
         super.document.getDocumentElement().normalize();
         NodeList rulesList = super.document.getElementsByTagName("Rule");
@@ -24,42 +25,40 @@ public class RuleParser extends XMLParser {
 		    Node rule = rulesList.item(i);
             if (rule.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) rule;
-                this.ruleRepository.addQestion(new Question(eElement.getAttribute("id"), 
-                                                            eElement.getElementsByTagName("Question").item(INDEX).getTextContent(),
-                                                            generateAnswer(eElement)));
-            }
 
-        }
-    }
-    private Answer generateAnswer(Element eElement) {
-        Element answers = eElement.getElementsByTagName("Answer").item(INDEX);
-        NodeList selectionValues = answers.getElementsByTagName("Selection");
-        Answer answer = new Answer(); 
+                String id = eElement.getAttribute("id");
+                String question = eElement.getElementsByTagName("Question").item(INDEX).getTextContent();
+                Answer answer = new Answer();
 
-        for (int j = 0; j < selectionValues.getLength(); j++) {
-            Node value = selectionValues.item(j);
+                Element answers = (Element) eElement.getElementsByTagName("Answer").item(INDEX);
+                NodeList selectionValues = answers.getElementsByTagName("Selection"); 
 
-            if (value.getNodeType() == Node.ELEMENT_NODE) {
-                Element vElement = (Element) value;
-                NodeList typeOfValues = value.getChildNodes();
+                for (int j = 0; j < selectionValues.getLength(); j++) {
+                    Element vElement = (Element) selectionValues.item(j);
+                    NodeList typeOfValues = vElement.getChildNodes();
 
-                boolean val = Boolean.parseBoolean(vElement.getAttribute("value"));
+                    boolean val = Boolean.parseBoolean(vElement.getAttribute("value"));
 
-                for (int k = 0; k < typeOfValues.getLength(); k++) {
-                    Node answerNode = typeOfValues.item(k);
-                    Element answerElement = (Element) answerNode;
+                        for (int k = 0; k < typeOfValues.getLength(); k++) {
+                            Node answerNode = typeOfValues.item(k);
+                            if (answerNode.getNodeType() == Node.ELEMENT_NODE){
+                                Element answerElement = (Element) answerNode;
 
-                    if (answerElement.getTagName().equals("SingleValue")) {
-                            answer.addValue(new SingleValue(typeElement.getAttribute("value"), val));
-                        } else {
-                            answer.addValue(new MultipleValue(typeElement.getAttribute("value"), val));
+                                if (answerElement.getTagName().equals("SingleValue")) {
+                                        answer.addValue(new SingleValue(answerElement.getAttribute("value"), val));
+                                    } else {
+                                        answer.addValue(new MultipleValue(answerElement.getAttribute("value"), val));
+                                    }
+                            }
+                            
                         }
-                }
                                
             
-            } else return answer;
-        }   
-    return answer;
-
+                } 
+            ruleRepository.addQuestion(new Question(id, question, answer));
+            } 
+        }
     }
+    
+    
 }
