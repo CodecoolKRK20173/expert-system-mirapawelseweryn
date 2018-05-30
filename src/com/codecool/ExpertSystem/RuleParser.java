@@ -47,7 +47,7 @@ public class RuleParser extends XMLParser {
                                 if (answerElement.getTagName().equals("SingleValue")) {
                                         answer.addValue(new SingleValue(answerElement.getAttribute("value"), val));
                                     } else {
-                                        answer.addValue(new MultipleValue(answerElement.getAttribute("value"), val));
+                                        answer.addValue(new MultiValue(answerElement.getAttribute("value"), val));
                                     }
                             }
                             
