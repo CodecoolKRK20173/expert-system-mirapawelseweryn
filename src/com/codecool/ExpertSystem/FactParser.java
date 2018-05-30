@@ -32,7 +32,7 @@ public class FactParser extends XMLParser {
         String factDescription =
             eElement.getChildNodes().item(1).getAttributes().item(0).getTextContent();
 
-        Fact newFact = new Fact(id, description);
+        Fact newFact = new Fact(factId, factDescription);
         NodeList evals = eElement.getElementsByTagName("Eval");
 
         for (int j = 0; j < evals.getLength(); j++) {
