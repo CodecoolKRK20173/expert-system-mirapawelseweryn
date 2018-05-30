@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class MultiValue extends Value {
 
   private List<String> param;
