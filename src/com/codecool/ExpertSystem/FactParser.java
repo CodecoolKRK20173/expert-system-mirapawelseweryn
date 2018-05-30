@@ -19,6 +19,7 @@ public class FactParser extends XMLParser{
 
     public FactRepository getFactRepository(){
         return this.factRepository;
+    }
 
     public void parseFact(){
         super.document.getDocumentElement().normalize();
