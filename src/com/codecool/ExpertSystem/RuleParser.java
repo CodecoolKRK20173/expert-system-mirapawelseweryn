@@ -43,16 +43,16 @@ public class RuleParser extends XMLParser {
                 Element vElement = (Element) value;
                 NodeList typeOfValues = value.getChildNodes();
 
-                boolean val = Boolean.parseBoolean(vElement.getAttribute("value")));
+                boolean val = Boolean.parseBoolean(vElement.getAttribute("value"));
 
                 for (int k = 0; k < typeOfValues.getLength(); k++) {
                     Node answerNode = typeOfValues.item(k);
                     Element answerElement = (Element) answerNode;
 
                     if (answerElement.getTagName().equals("SingleValue")) {
-                            answer.addValue(new SingleValue(typeElement.getAttribute("value"), val);
+                            answer.addValue(new SingleValue(typeElement.getAttribute("value"), val));
                         } else {
-                            answer.addValue(new MultipleValue(typeElement.getAttribute("value"), val);
+                            answer.addValue(new MultipleValue(typeElement.getAttribute("value"), val));
                         }
                 }
                                
@@ -61,4 +61,5 @@ public class RuleParser extends XMLParser {
         }   
     return answer;
 
+    }
 }
