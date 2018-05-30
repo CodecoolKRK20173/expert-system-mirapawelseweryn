@@ -31,5 +31,34 @@ public class RuleParser extends XMLParser {
 
         }
     }
-    
+    private Answer generateAnswer(Element eElement) {
+        Element answers = eElement.getElementsByTagName("Answer").item(INDEX);
+        NodeList selectionValues = answers.getElementsByTagName("Selection");
+        Answer answer = new Answer(); 
+
+        for (int j = 0; j < selectionValues.getLength(); j++) {
+            Node value = selectionValues.item(j);
+
+            if (value.getNodeType() == Node.ELEMENT_NODE) {
+                Element vElement = (Element) value;
+                NodeList typeOfValues = value.getChildNodes();
+
+                boolean val = Boolean.parseBoolean(vElement.getAttribute("value")));
+
+                for (int k = 0; k < typeOfValues.getLength(); k++) {
+                    Node answerNode = typeOfValues.item(k);
+                    Element answerElement = (Element) answerNode;
+
+                    if (answerElement.getTagName().equals("SingleValue")) {
+                            answer.addValue(new SingleValue(typeElement.getAttribute("value"), val);
+                        } else {
+                            answer.addValue(new MultipleValue(typeElement.getAttribute("value"), val);
+                        }
+                }
+                               
+            
+            } else return answer;
+        }   
+    return answer;
+
 }
