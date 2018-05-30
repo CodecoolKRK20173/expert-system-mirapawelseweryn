@@ -4,12 +4,12 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 public class RuleParser extends XMLParser {
-    private RuleRepository ruleRepository;
+    private RuleRepository ruleRepository = new RuleRepository();
     private final int INDEX = 0;
     
     public RuleParser(String fileName){
         super.loadXMLDocument(fileName);
-        RuleRepository ruleRepository = new RuleRepository();
+        createQuestion();
         
     }
 
@@ -27,7 +27,9 @@ public class RuleParser extends XMLParser {
                 Element eElement = (Element) rule;
 
                 String id = eElement.getAttribute("id");
+                System.out.println(id);
                 String question = eElement.getElementsByTagName("Question").item(INDEX).getTextContent();
+                System.out.println(question);
                 Answer answer = new Answer();
 
                 Element answers = (Element) eElement.getElementsByTagName("Answer").item(INDEX);
@@ -38,6 +40,7 @@ public class RuleParser extends XMLParser {
                     NodeList typeOfValues = vElement.getChildNodes();
 
                     boolean val = Boolean.parseBoolean(vElement.getAttribute("value"));
+                    System.out.println(val);
 
                         for (int k = 0; k < typeOfValues.getLength(); k++) {
                             Node answerNode = typeOfValues.item(k);
@@ -45,9 +48,12 @@ public class RuleParser extends XMLParser {
                                 Element answerElement = (Element) answerNode;
 
                                 if (answerElement.getTagName().equals("SingleValue")) {
+                                        System.out.println(answerElement.getAttribute("value"));
                                         answer.addValue(new SingleValue(answerElement.getAttribute("value"), val));
+                                        this.ruleRepository.addQuestion(new Question(id, question, answer));
                                     } else {
                                         answer.addValue(new MultiValue(answerElement.getAttribute("value"), val));
+                                        this.ruleRepository.addQuestion(new Question(id, question, answer));
                                     }
                             }
                             
@@ -55,7 +61,7 @@ public class RuleParser extends XMLParser {
                                
             
                 } 
-            ruleRepository.addQuestion(new Question(id, question, answer));
+            
             } 
         }
     }
