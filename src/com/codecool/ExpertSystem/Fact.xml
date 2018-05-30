@@ -27,7 +27,8 @@
         </Evals>
 
     </Fact>
-        <Fact id="glc">
+    
+    <Fact id="glc">
         <Description value="Mercedes GLC"/>
         <Evals>
             <Eval id="money">true</Eval>
@@ -36,8 +37,8 @@
         </Evals>
     </Fact>
 
-    </Fact>
-        <Fact id="passat">
+
+    <Fact id="passat">
         <Description value="Volkswagen Passat 1.8 TDI"/>
         <Evals>
             <Eval id="money">false</Eval>
@@ -46,8 +47,7 @@
         </Evals>
     </Fact>
 
-    </Fact>
-        <Fact id="defender">
+    <Fact id="defender">
         <Description value="Land Rover Defender 110"/>
         <Evals>
             <Eval id="money">true</Eval>
@@ -56,8 +56,7 @@
         </Evals>
     </Fact>
 
-    </Fact>
-        <Fact id="prius">
+    <Fact id="prius">
         <Description value="Toyota Prius"/>
         <Evals>
             <Eval id="money">true</Eval>
@@ -66,8 +65,7 @@
         </Evals>
     </Fact>
 
-    </Fact>
-        <Fact id="a8">
+    <Fact id="a8">
         <Description value="Audi A8"/>
         <Evals>
             <Eval id="money">false</Eval>
@@ -75,4 +73,5 @@
             <Eval id="luxury">true</Eval>
         </Evals>
     </Fact>
+    
 </Facts>
