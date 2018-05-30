@@ -9,7 +9,8 @@ public class RuleParser extends XMLParser {
     
     public RuleParser(String fileName){
         super.loadXMLDocument(fileName);
-        RuleRepository ruleRepository = new RuleRepository();
+        this.ruleRepository = new RuleRepository();
+        createQuestion();
         
     }
 
@@ -46,8 +47,10 @@ public class RuleParser extends XMLParser {
 
                                 if (answerElement.getTagName().equals("SingleValue")) {
                                         answer.addValue(new SingleValue(answerElement.getAttribute("value"), val));
+                                        this.ruleRepository.addQuestion(new Question(id, question, answer));
                                     } else {
                                         answer.addValue(new MultiValue(answerElement.getAttribute("value"), val));
+                                        this.ruleRepository.addQuestion(new Question(id, question, answer));
                                     }
                             }
                             
@@ -55,7 +58,7 @@ public class RuleParser extends XMLParser {
                                
             
                 } 
-            ruleRepository.addQuestion(new Question(id, question, answer));
+            
             } 
         }
     }
