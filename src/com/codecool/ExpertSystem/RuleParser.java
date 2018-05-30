@@ -27,9 +27,7 @@ public class RuleParser extends XMLParser {
                 Element eElement = (Element) rule;
 
                 String id = eElement.getAttribute("id");
-                System.out.println(id);
                 String question = eElement.getElementsByTagName("Question").item(INDEX).getTextContent();
-                System.out.println(question);
                 Answer answer = new Answer();
 
                 Element answers = (Element) eElement.getElementsByTagName("Answer").item(INDEX);
@@ -40,7 +38,6 @@ public class RuleParser extends XMLParser {
                     NodeList typeOfValues = vElement.getChildNodes();
 
                     boolean val = Boolean.parseBoolean(vElement.getAttribute("value"));
-                    System.out.println(val);
 
                         for (int k = 0; k < typeOfValues.getLength(); k++) {
                             Node answerNode = typeOfValues.item(k);
