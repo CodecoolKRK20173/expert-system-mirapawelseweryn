@@ -2,18 +2,20 @@
 
 import com.sun.org.apache.xerces.internal.parsers.XMLParser;
 
-import com.codecool.ExpertSystem.*;
-import java.xml.parsers.*;
+//import com.codecool.ExpertSystem.*;
+//import java.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.*;
 import java.io.*;
 
 public class FactParser extends XMLParser{
-    private FactRepository factRepository;
+    //FactRepository factRepository;
+    FactRepository factRepository; 
 
     public FactParser(String filename){
-        super(loadXMLDocument(fileName));
-        FactRepository factRepository = new FactRepository();
+        super.loadXMLDocument(filename);
+        this.factRepository= new FactRepository(); 
+
     }
 
 

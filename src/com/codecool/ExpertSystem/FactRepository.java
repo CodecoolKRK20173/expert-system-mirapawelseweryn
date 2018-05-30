@@ -1,12 +1,12 @@
 //package com.codecool.ExpertSystem;
 
-import com.codecool.Iterators.FactIterator;
+//import com.codecool.Iterators.FactIterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-protected class FactRepository{
+public class FactRepository{
 
     private List<Fact> facts;
 
