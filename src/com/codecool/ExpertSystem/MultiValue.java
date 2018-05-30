@@ -2,20 +2,20 @@ import java.util.List;
 
 public class MultiValue extends Value {
 
-  private List<String> param;
+  private List<String> list;
   private boolean selectionType;
 
-  MultiValue(List<String> param, boolean selectionType) {
-    this.param = param;
+  MultiValue(String param, boolean selectionType) {
+    this.list = Arrays.asList(param.split(","));
     this.selectionType = selectionType;
   }
 
-  @Override
+  // @Override
   public List<String> getInputPattern() {
-    return param;
+    return list;
   }
 
-  @Override
+  // @Override
   public boolean getSelectionType() {
     return selectionType;
   }
