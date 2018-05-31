@@ -1,67 +1,61 @@
+package com.codecool.ExpertSystem;
+
 import java.io.*;
 import javax.xml.parsers.*;
 import org.w3c.dom.*;
-import org.xml.sax.SAXException;
 
 public class RuleParser extends XMLParser {
-    private RuleRepository ruleRepository;
-    private final int INDEX = 0;
-    
-    public RuleParser(String fileName){
-        super.loadXMLDocument(fileName);
-        this.ruleRepository = new RuleRepository();
-        createQuestion();
-        
-    }
+  private RuleRepository ruleRepository;
+  private final int INDEX = 0;
 
-    public RuleRepository getRuleRepository() {
-        return this.ruleRepository;
-    }
+  public RuleParser(String fileName) {
+    super.loadXMLDocument(fileName);
+    this.ruleRepository = new RuleRepository();
+    createQuestion();
+  }
 
-    public void createQuestion() {
-        super.document.getDocumentElement().normalize();
-        NodeList rulesList = super.document.getElementsByTagName("Rule");
+  public RuleRepository getRuleRepository() {
+    return this.ruleRepository;
+  }
 
-        for (int i = 0; i < rulesList.getLength(); i++) {
-		    Node rule = rulesList.item(i);
-            if (rule.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) rule;
+  public void createQuestion() {
+    super.document.getDocumentElement().normalize();
+    NodeList rulesList = super.document.getElementsByTagName("Rule");
 
-                String id = eElement.getAttribute("id");
-                String question = eElement.getElementsByTagName("Question").item(INDEX).getTextContent();
-                Answer answer = new Answer();
+    for (int i = 0; i < rulesList.getLength(); i++) {
+      Node rule = rulesList.item(i);
+      if (rule.getNodeType() == Node.ELEMENT_NODE) {
+        Element eElement = (Element) rule;
 
-                Element answers = (Element) eElement.getElementsByTagName("Answer").item(INDEX);
-                NodeList selectionValues = answers.getElementsByTagName("Selection"); 
+        String id = eElement.getAttribute("id");
+        String question = eElement.getElementsByTagName("Question").item(INDEX).getTextContent();
+        Answer answer = new Answer();
 
-                for (int j = 0; j < selectionValues.getLength(); j++) {
-                    Element vElement = (Element) selectionValues.item(j);
-                    NodeList typeOfValues = vElement.getChildNodes();
+        Element answers = (Element) eElement.getElementsByTagName("Answer").item(INDEX);
+        NodeList selectionValues = answers.getElementsByTagName("Selection");
 
-                    boolean val = Boolean.parseBoolean(vElement.getAttribute("value"));
+        for (int j = 0; j < selectionValues.getLength(); j++) {
+          Element vElement = (Element) selectionValues.item(j);
+          NodeList typeOfValues = vElement.getChildNodes();
 
-                        for (int k = 0; k < typeOfValues.getLength(); k++) {
-                            Node answerNode = typeOfValues.item(k);
-                            if (answerNode.getNodeType() == Node.ELEMENT_NODE){
-                                Element answerElement = (Element) answerNode;
+          boolean val = Boolean.parseBoolean(vElement.getAttribute("value"));
 
-                                if (answerElement.getTagName().equals("SingleValue")) {
-                                        answer.addValue(new SingleValue(answerElement.getAttribute("value"), val));
-                                        this.ruleRepository.addQuestion(new Question(id, question, answer));
-                                    } else {
-                                        answer.addValue(new MultiValue(answerElement.getAttribute("value"), val));
-                                        this.ruleRepository.addQuestion(new Question(id, question, answer));
-                                    }
-                            }
-                            
-                        }
-                               
-            
-                } 
-            
-            } 
+          for (int k = 0; k < typeOfValues.getLength(); k++) {
+            Node answerNode = typeOfValues.item(k);
+            if (answerNode.getNodeType() == Node.ELEMENT_NODE) {
+              Element answerElement = (Element) answerNode;
+
+              if (answerElement.getTagName().equals("SingleValue")) {
+                answer.addValue(new SingleValue(answerElement.getAttribute("value"), val));
+                this.ruleRepository.addQuestion(new Question(id, question, answer));
+              } else {
+                answer.addValue(new MultiValue(answerElement.getAttribute("value"), val));
+                this.ruleRepository.addQuestion(new Question(id, question, answer));
+              }
+            }
+          }
         }
+      }
     }
-    
-    
+  }
 }

@@ -1,23 +1,21 @@
-public class ESProvider{
- 
-    private FactRepository factRepository;
-    private RuleRepository ruleRepository;
-    private Map<String, Boolean> answers;
+package com.codecool.ExpertSystem;
 
-    public ESProvider(FactParser factParser, RuleParser ruleParser){
-        this.factRepository = factParser.getFactRepository();
-        this.ruleRepository = ruleParser.getRulerepository();
-    }
+import java.util.Map;
 
-    public void collectAnswers(){
+public class ESProvider {
 
-    }
+  private FactRepository factRepository;
+  private RuleRepository ruleRepository;
+  private Map<String, Boolean> answers;
 
-    public boolean getAnswerByQuestion(String questionId){
+  public ESProvider(FactParser factParser, RuleParser ruleParser) {
+    this.factRepository = factParser.getFactRepository();
+    this.ruleRepository = ruleParser.getRuleRepository();
+  }
 
-    }
-
-    public String evaluate(){
-
-    }
+  // public void collectAnswers() {}
+  //
+  // public boolean getAnswerByQuestion(String questionId) {}
+  //
+  // public String evaluate() {}
 }

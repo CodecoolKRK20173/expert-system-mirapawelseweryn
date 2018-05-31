@@ -1,3 +1,5 @@
+package com.codecool.ExpertSystem;
+
 import java.util.List;
 
 public abstract class Value {

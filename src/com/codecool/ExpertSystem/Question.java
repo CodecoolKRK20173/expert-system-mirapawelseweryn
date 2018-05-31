@@ -1,3 +1,5 @@
+package com.codecool.ExpertSystem;
+
 public class Question {
   public String id;
   public String question;

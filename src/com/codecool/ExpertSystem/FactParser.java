@@ -1,6 +1,4 @@
-// package com.codecool.ExpertSystem;
-
-// import com.codecool.ExpertSystem.*;
+package com.codecool.ExpertSystem;
 
 import java.io.*;
 import javax.xml.parsers.*;
@@ -8,7 +6,6 @@ import org.w3c.dom.*;
 import org.xml.sax.*;
 
 public class FactParser extends XMLParser {
-  // FactRepository factRepository;
   FactRepository factRepository;
 
   public FactParser(String filename) {

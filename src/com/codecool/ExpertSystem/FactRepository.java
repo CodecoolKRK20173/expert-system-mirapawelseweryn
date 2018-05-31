@@ -1,6 +1,4 @@
-// package com.codecool.ExpertSystem;
-
-// import com.codecool.Iterators.FactIterator;
+package com.codecool.ExpertSystem;
 
 import java.util.ArrayList;
 import java.util.Iterator;

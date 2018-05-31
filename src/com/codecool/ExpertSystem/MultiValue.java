@@ -1,3 +1,5 @@
+package com.codecool.ExpertSystem;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,12 +13,10 @@ public class MultiValue extends Value {
     this.selectionType = selectionType;
   }
 
-  // @Override
   public List<String> getInputPattern() {
     return list;
   }
 
-  // @Override
   public boolean getSelectionType() {
     return selectionType;
   }

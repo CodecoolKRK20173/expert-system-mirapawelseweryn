@@ -1,4 +1,4 @@
-// package com.codecool.ExpertSystem;
+package com.codecool.ExpertSystem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +33,7 @@ public class Fact {
     return String.format("%s %s", ID, DESCRIPTION);
   }
 
-  Map<String, Boolean> getValueID() {
+  Map<String, Boolean> getValueId() {
     return valueId;
   }
 }
