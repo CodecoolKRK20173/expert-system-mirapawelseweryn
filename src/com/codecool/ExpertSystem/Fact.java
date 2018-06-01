@@ -33,7 +33,8 @@ public class Fact {
     return String.format("%s %s", ID, DESCRIPTION);
   }
 
-  Map<String, Boolean> getValueId() {
-    return valueId;
+  public Boolean getValueById(String id) {
+    Boolean value = valueId.get(id);
+    return value;
   }
 }

@@ -11,6 +11,7 @@ public class FactParser extends XMLParser {
   public FactParser(String filename) {
     super.loadXMLDocument(filename);
     this.factRepository = new FactRepository();
+    parseFact();
   }
 
   public FactRepository getFactRepository() {

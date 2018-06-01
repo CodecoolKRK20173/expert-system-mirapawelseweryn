@@ -5,6 +5,7 @@ public class Main {
     FactParser FACT_PARSER = new FactParser("src/com/codecool/ExpertSystem/Fact.xml");
     RuleParser RULE_PARSER = new RuleParser("src/com/codecool/ExpertSystem/Rules.xml");
     ESProvider esProvider = new ESProvider(FACT_PARSER, RULE_PARSER);
-    //  esProvider.startApp();
+    esProvider.collectAnswers();
+    esProvider.evaluate();
   }
 }

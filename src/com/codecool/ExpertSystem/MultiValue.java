@@ -1,6 +1,5 @@
 package com.codecool.ExpertSystem;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MultiValue extends Value {
@@ -8,8 +7,8 @@ public class MultiValue extends Value {
   private List<String> list;
   private boolean selectionType;
 
-  MultiValue(String param, boolean selectionType) {
-    this.list = Arrays.asList(param.split(","));
+  MultiValue(List<String> list, boolean selectionType) {
+    this.list = list;
     this.selectionType = selectionType;
   }
 
